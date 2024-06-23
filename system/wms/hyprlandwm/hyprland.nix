@@ -12,12 +12,11 @@
     services.displayManager.sddm.wayland = {
       
       enable = true;
-    
-     };
+      };
     services.displayManager.sddm = {
-       enable = true;
-       theme = "catppuccin-sddm";
-       };  
+      enable = true;
+      theme = "elegant-sddm";
+      };  
     
   programs = {
     hyprlock.enable = true; 

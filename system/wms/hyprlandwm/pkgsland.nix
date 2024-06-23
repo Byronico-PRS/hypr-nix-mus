@@ -7,6 +7,15 @@ let
  
 in
  {
+    #file manager
+programs.thunar.enable = true;
+programs.xfconf.enable = true;
+programs.thunar.plugins = with pkgs.xfce; [
+  thunar-archive-plugin
+  thunar-volman
+];
+services.gvfs.enable = true; # Mount, trash, and other functionalities
+services.tumbler.enable = true; # Thumbnail support for images
 
   environment.systemPackages = with pkgs; [
    #scripts de usuario
@@ -15,6 +24,9 @@ in
     calendar
     reaper-ll #lowlatency reaper start for pipewire
    #Libs for sddm theme
+    # libsForQt5.qtstyleplugin-kvantum 
+     #kdePackages.sddm-kcm
+     #kdePackages.sddm
      libsForQt5.qt5.qtquickcontrols2
      libsForQt5.qt5.qtgraphicaleffects 
      where-is-my-sddm-theme
@@ -52,6 +64,8 @@ in
      hyprlock
      hyprlang
      hypridle
+     hyprpicker
+     udiskie
    #audio
      pavucontrol
      spotify
@@ -66,15 +80,9 @@ in
    #notfy applet
       dunst
       libnotify
-   #file manager
-      cinnamon.nemo-with-extensions
-      cinnamon.nemo
-      cinnamon.nemo-emblems
-      cinnamon.nemo-fileroller   
-      cinnamon.folder-color-switcher
-      cinnamon.nemo-python
-      nemo-qml-plugin-dbus
-
+    # comunication
+      zapzap
+      webcord
    #menu  
       rofi-wayland
    #monitor  
@@ -83,6 +91,7 @@ in
   
     ffmpeg_6-full
    #media player  
+    playerctl
     mpv
    #screenshot 
     gphoto2

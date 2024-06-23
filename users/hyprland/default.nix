@@ -7,6 +7,8 @@
      ./hyprconf.nix
     #My hypridle config
      ./hypridleconf.nix
+    #My hypridle config
+     ./hyprlockconf.nix
     #My panel
     ./waybar.nix
     #dunst-conf nixdots configs
