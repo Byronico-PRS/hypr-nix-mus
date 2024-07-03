@@ -8,15 +8,15 @@
 
    ];
   security.polkit.enable = true;
-  #Display manager  
-    services.displayManager.sddm.wayland = {
-      
-      enable = true;
-      };
-    services.displayManager.sddm = {
-      enable = true;
-      theme = "elegant-sddm";
-      };  
+  #Display manager .. cant config sddm so i quit  
+   # services.displayManager.sddm.wayland = {
+   #   
+   #   enable = true;
+   #   };
+   # services.displayManager.sddm = {
+   #   enable = true;
+   #   theme = "elegant-sddm";
+   #   };  
     
   programs = {
     hyprlock.enable = true; 
@@ -30,6 +30,7 @@
    };
  
  services.hypridle.enable = true;
+
  # Fonts
    fonts.packages = with pkgs; [
      # Nerd fonts

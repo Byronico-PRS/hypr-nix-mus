@@ -61,33 +61,33 @@
    musnix.alsaSeq.enable = true;
 
   # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
-  boot.loader.grub.useOSProber = true;
+   boot.loader.grub.enable = true;
+   boot.loader.grub.device = "/dev/sda";
+   boot.loader.grub.useOSProber = true;
 
   networking.hostName = "paulo_dell"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  # Configure network proxy if necessary 
+   # networking.proxy.default = "http://user:password@proxy:port/";
+   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  networking.networkmanager.enable = true;
+   networking.networkmanager.enable = true;
   
   # Enable Flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   
   # Enable flatpak
-  xdg.portal.enable = true;
-  services.flatpak.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+   xdg.portal.enable = true;
+   services.flatpak.enable = true;
+   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   # Set your time zone.
-  time.timeZone = "America/Sao_Paulo";
+   time.timeZone = "America/Sao_Paulo";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "pt_BR.UTF-8";
+   i18n.defaultLocale = "pt_BR.UTF-8";
 
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "pt_BR.UTF-8";
@@ -103,73 +103,71 @@
 
 
   # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "br";
-    variant = "";
-  };
+   services.xserver.xkb = {
+     layout = "br";
+     variant = "";
+    };
 
   # Configure console keymap
-  console.keyMap = "br-abnt2";
+   console.keyMap = "br-abnt2";
 
   # Enable CUPS to print documents.
-  services.printing = {
-    enable = true;
-    defaultShared = true;
-    browsing = true;
-  };
+   services.printing = {
+     enable = true;
+     defaultShared = true;
+     browsing = true;
+   };
   
   # Enable browse print
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-  };
+   services.avahi = {
+     enable = true;
+     nssmdns4 = true;
+   };
   programs.system-config-printer.enable = true;
 
   # Enable ntfs file system (to open pen drives in ntfs)
-  boot.supportedFilesystems = [ "ntfs" ];
+   boot.supportedFilesystems = [ "ntfs" ];
  
   # Enable touchpad support (enabled default in most desktopManager).
-  services.libinput.enable = true;
+   services.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-    
-  users.users.emmp = {
-    isNormalUser = true;
-    description = "emmp";
-    homeMode = "755";
-    extraGroups = [ "networkmanager" "wheel" "audio" "jackaudio" ];
-    packages = with pkgs; [
-     #games
-     scid #chessdatabase
-     ltris #tetris
-     abuse #sidescroller action game
-     xonotic #multiplayer fps
-     stockfish #chess engine   
-    ]; 
+ # Define a user account. Don't forget to set a password with ‘passwd’. 
+   users.users.emmp = {
+     isNormalUser = true;
+     description = "emmp";
+     homeMode = "755";
+     extraGroups = [ "networkmanager" "wheel" "audio" "jackaudio" ];
+     packages = with pkgs; [
+      #games
+      scid #chessdatabase
+      ltris #tetris
+      abuse #sidescroller action game
+      xonotic #multiplayer fps
+      stockfish #chess engine   
+     ]; 
   };
   
-  #Enable auto upgrade nixos
-
-   system.autoUpgrade.enable = true;
-   system.autoUpgrade.allowReboot = true;
+ # Enable auto upgrade nixos
+   #system.autoUpgrade.enable = true;
+   #system.autoUpgrade.allowReboot = true;
   
-  # Allow unfree packages
+ # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
  
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
+ # Some programs need SUID wrappers, can be configured further or are
+ # started in user sessions.
   # programs.mtr.enable = true;
   # programs.gnupg.agent = {
   #   enable = true;
   #   enableSSHSupport = true;
   # };
 
-  # List services that you want to enable:
-
+ # List services that you want to enable:
+ 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
-  # Enable KDE Connect
+  # Enable KDE Connect adn Dropbox
    networking.firewall = { 
     enable = true;
     allowedTCPPortRanges = [ 
@@ -178,7 +176,20 @@
     allowedUDPPortRanges = [ 
       { from = 1714; to = 1764; } # KDE Connect
     ];  
+    allowedTCPPorts = [ 17500 ]; # Dropbox
+    allowedUDPPorts = [ 17500 ]; # Dropbox
     };
+   #Just dropbox
+    systemd.user.services.dropbox = {
+    description = "Dropbox";
+    wantedBy = [ "graphical-session.target" ];
+    environment = {
+      QT_PLUGIN_PATH = "/run/current-system/sw/" + pkgs.qt5.qtbase.qtPluginPrefix;
+      QML2_IMPORT_PATH = "/run/current-system/sw/" + pkgs.qt5.qtbase.qtQmlPrefix;
+    };
+
+  };
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];

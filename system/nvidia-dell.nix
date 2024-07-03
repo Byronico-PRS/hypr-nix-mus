@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }:
 {
-
+           nixpkgs.config.allowUnfree = true;
+           nixpkgs.config.nvidia.acceptLicense = true;
   # Make sure opengl is enabled
   hardware.opengl = {
     enable = true;
@@ -10,6 +11,10 @@
 
   # Tell Xorg to use the nvidia driver (also valid for Wayland)
   services.xserver.videoDrivers = ["nvidia"];
+
+  
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
+
 
   hardware.nvidia = {
 
@@ -24,6 +29,6 @@
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    #package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 }

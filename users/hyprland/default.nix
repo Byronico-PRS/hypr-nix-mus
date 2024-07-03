@@ -10,15 +10,15 @@
     #My hypridle config
      ./hyprlockconf.nix
     #My panel
-    ./waybar.nix
+     ./waybar.nix
     #dunst-conf nixdots configs
-    ./dunstconf.nix
+     ./dunstconf.nix
     #Wallpaper
-    ./hyprpaperconf.nix
+     ./hyprpaperconf.nix
     #gtk-theme-qt-theme
-    ./gtk-theme.nix
+     ./gtk-theme.nix
     #kitty-conf
-    ./kittyconf.nix
+     ./kittyconf.nix
    ];
    
 }

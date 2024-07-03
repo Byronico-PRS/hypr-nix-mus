@@ -60,6 +60,7 @@ services.tumbler.enable = true; # Thumbnail support for images
      gnome-icon-theme
      networkmanagerapplet
    #hyprprograms
+     hyprcursor
      hyprpaper
      hyprlock
      hyprlang

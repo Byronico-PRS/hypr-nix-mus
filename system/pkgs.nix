@@ -1,5 +1,7 @@
 { config, pkgs, ... }: 
 {
+
+  programs.kdeconnect.enable = true;
  environment.systemPackages = with pkgs; [
 
   # system 
@@ -25,7 +27,8 @@
     gparted
     libsForQt5.breeze-icons
     zafiro-icons
-    libsForQt5.kdeconnect-kde    
+    libsForQt5.kdeconnect-kde  
+    kdePackages.kdeconnect-kde  
     cmatrix
     # libsForQt5.bismuth
     fluidsynth
@@ -44,7 +47,7 @@
     vivaldi
     
   # Escritorio
-    chromium
+    
     emacs-gtk
     notes
     libreoffice #office suite
@@ -54,6 +57,10 @@
     git
     unetbootin #live usb creator
     nextcloud-client #cloud files
+    dropbox-cli
+    dropbox
+    maestral-gui
+    xfce.thunar-dropbox-plugin
     gnome.zenity
     usbutils
   
@@ -66,6 +73,7 @@
     musescore #editor de partitura
     reaper #daw essa versao provoca dificuldades de configuração com o reapck e outros plugins do js
     ardour #daw
+    milkytracker #tracker
     helm #synth
     distrho #pugin suite
     drumgizmo #drum sample
@@ -82,7 +90,10 @@
        
     #Windows apps
     wineWowPackages.waylandFull
+    wine
+    wineasio
     winetricks
+    winePackages.fonts
     carla
     yabridge
     yabridgectl

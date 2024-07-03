@@ -22,6 +22,7 @@ wayland.windowManager.hyprland = {
        
        ###################
        ### MY PROGRAMS ###
+       ### (KEYWORDS) ####
        ###################
        # See https://wiki.hyprland.org/Configuring/Keywords/ for more
          $terminal = kitty
@@ -29,8 +30,8 @@ wayland.windowManager.hyprland = {
          $browser = brave
          $editor = codium
          $launcher = rofi -combi-modi drun,run -theme Arc-Dark -font "hack 12" -show combi -show-icons
-         $monitorResources = btop
-
+         $zapClient = zapzap
+         
        #################
        ### AUTOSTART ###
        #################
@@ -39,13 +40,14 @@ wayland.windowManager.hyprland = {
          exec-once = hypridle
          exec-once = bluetoothd
          exec-once = udiskie
+         exec-once = maestral_qt
        
        #############################
        ### ENVIRONMENT VARIABLES ###
        #############################
        # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
          env = XCURSOR_SIZE,24
-         env = HYPRCURSOR_SIZE,24
+        # env = HYPRCURSOR_SIZE,24
        
          input {
              kb_layout = br
@@ -109,9 +111,8 @@ wayland.windowManager.hyprland = {
            }
           
           # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-           master {
-             new_is_master = true
-           }
+         #    new_is_master = true
+          # }
          
          gestures {
              workspace_swipe = on
@@ -126,10 +127,11 @@ wayland.windowManager.hyprland = {
          
          # Example windowrule v1
           windowrule = float, ^(nm-applet --indicator)$
+          windowrule = workspace 9, ^($zapClient)$
          # Example windowrule v2
           #windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
-         windowrule = opacity 0.9 0.7, ^(kitty)$
-         windowrule = opacity 0.9 0.7, ^(thunar)$
+         windowrule = opacity 0.9 0.7, ^($terminal)$
+         windowrule = opacity 0.9 0.7, ^($fileManager)$
          # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
          
          misc {
@@ -160,7 +162,6 @@ wayland.windowManager.hyprland = {
          bind = $mainMod, W, exec, $browser
          bind = $mainMod, E, exec, $fileManager
          bind = $mainMod, C, exec, $editor
-         bind = $mainMod, M, exec, $monitorResources 
          bind = $mainMod, X, exec, $terminal
          bind = $mainMod, N, exec, notes
          bind =,Print, exec, grim - | swappy -f -
