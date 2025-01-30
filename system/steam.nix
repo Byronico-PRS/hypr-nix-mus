@@ -14,7 +14,7 @@
       })
     ];
  #OPENGL
-   hardware.opengl.driSupport32Bit = true;
+      hardware.graphics.enable32Bit = true;
  #ICONS4LUTRIS
  #  environment.systemPackages = [ gnome.adwaita-icon-theme ];
 

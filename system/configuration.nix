@@ -17,15 +17,15 @@
       <musnix>
      # My config audio file (audio config for pulse audio with jack)     
         # with pulse
-        #./audio.nix
+         ./audio.nix
         #with pipewire
-        ./audio-pipewire.nix 
+        #./audio-pipewire.nix 
     
      # Steam and game configs
       ./steam.nix 
      
      # My nvidia graphics config (nao estao funcionando em meu pc) 
-      ./nvidia-dell.nix # is not working
+     # ./nvidia-dell.nix # is not working
            
      #Configs for cannon as online cam
       ./video.nix
@@ -38,7 +38,7 @@
          # ./des/gnome.nix
         
         # XFCE DE
-         # ./des/xfce.nix
+          ./des/xfce.nix
        
         # Budgie DE 
          # ./des/budgie.nix 
@@ -47,8 +47,8 @@
         # ./wms/awesomewm/awesome.nix 
         
         # Hyprland WM 
-          ./wms/hyprlandwm/hyprland.nix 
-          
+         # ./wms/hyprlandwm/hyprland.nix 
+  
    ];
 
   
@@ -123,7 +123,7 @@
      enable = true;
      nssmdns4 = true;
    };
-  programs.system-config-printer.enable = true;
+   programs.system-config-printer.enable = true;
 
   # Enable ntfs file system (to open pen drives in ntfs)
    boot.supportedFilesystems = [ "ntfs" ];

@@ -1,9 +1,22 @@
 { config, pkgs, ... }: 
+
+let
+  apply-user = import ./scripts/apply-user.nix { inherit pkgs; };
+  apply-system = import ./scripts/apply-system.nix { inherit pkgs; };
+  calendar = import ./scripts/calendar.nix { inherit pkgs; };
+  reaper-ll = import ./scripts/reaper-ll.nix { inherit pkgs; };
+ 
+in
 {
 
   programs.kdeconnect.enable = true;
  environment.systemPackages = with pkgs; [
-
+  # scripts de usuario
+    apply-user
+    apply-system
+    calendar
+    reaper-ll #lowlatency reaper start for pipewire
+    
   # system 
     # lightdm_gtk_greeter    
     gparted
@@ -20,7 +33,6 @@
     vim
     htop
     btop
-    ffmpeg
     unzip
     p7zip
     maia-icon-theme
@@ -34,7 +46,7 @@
     fluidsynth
     zita-alsa-pcmi
     jack-example-tools
-    alsaTools
+    alsa-tools
     jack2
     soundfont-fluid
     soundfont-ydp-grand
@@ -61,27 +73,16 @@
     dropbox
     maestral-gui
     xfce.thunar-dropbox-plugin
-    gnome.zenity
+    zenity
     usbutils
   
   # Audio
-    lsp-plugins
-    surge-XT
-    x42-plugins
-    magnetophonDSP.pluginUtils 
-    sfizz
+    
     musescore #editor de partitura
     reaper #daw essa versao provoca dificuldades de configuração com o reapck e outros plugins do js
     ardour #daw
     milkytracker #tracker
-    helm #synth
-    distrho #pugin suite
-    drumgizmo #drum sample
-    vmpk    #piano
-    guitarix # guitar amps
-    gxplugins-lv2 #guitar plugin
-    calf #plugin suite
-    tonelib-metal #guitaramp
+      qjackctl
   # Video
     obs-studio #rec_screen vide_studio
     vlc #video player
@@ -89,7 +90,9 @@
     gphoto2 #cam tool
        
     #Windows apps
-    wineWowPackages.waylandFull
+    linvstmanager
+    wineWowPackages.full
+    wineWowPackages.fonts
     wine
     wineasio
     winetricks
@@ -97,6 +100,7 @@
     carla
     yabridge
     yabridgectl
+    ffmpeg-full
   # Impressora
     gnomeExtensions.alternate-menu-for-hplip2
     hplipWithPlugin

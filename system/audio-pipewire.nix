@@ -1,7 +1,10 @@
 { config, pkgs, ... }: {
 
 security.rtkit.enable = true;
-
+services.blueman.enable = true;
+ # hardware.bluetooth.enable = true; # enables support for Bluetooth
+ #
+  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
 ## PROGRAMS
    ##PATCHBAY
 
@@ -24,9 +27,9 @@ security.rtkit.enable = true;
      services.pipewire.extraConfig.pipewire."92-low-latency" = {
          context.properties = {
          default.clock.rate = 48000;
-         default.clock.quantum = 32;
-         default.clock.min-quantum = 32;
-         default.clock.max-quantum = 32;
+         default.clock.quantum = 128;
+         default.clock.min-quantum = 128;
+         default.clock.max-quantum = 128;
          };
  };     
    ##LOW LATENCY CONFIG PULSE
@@ -48,8 +51,7 @@ security.rtkit.enable = true;
        resample.quality = 1;
      };
    }; 
-services.pipewire.wireplumber.enable = true;
-services.pipewire.wireplumber.extraConfig = {
+services.pipewire.wireplumber.extraConfig.bluetoothEnhancements = {
   "monitor.bluez.properties" = {
       "bluez5.enable-sbc-xq" = true;
       "bluez5.enable-msbc" = true;
@@ -57,6 +59,15 @@ services.pipewire.wireplumber.extraConfig = {
       "bluez5.roles" = [ "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag" ];
   };
 };
+services.pipewire.wireplumber.enable = true;
+#services.pipewire.wireplumber.extraConfig = {
+#  "monitor.bluez.properties" = {
+#      "bluez5.enable-sbc-xq" = true;
+#      "bluez5.enable-msbc" = true;
+#      "bluez5.enable-hw-volume" = true;
+#      "bluez5.roles" = [ "hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag" ];
+#  };
+#};
 
 #environment.etc."wireplumber/main.lua.d/99-alsa-lowlatency.lua".text = ''
 #  alsa_monitor.rules = {

@@ -1,7 +1,7 @@
 { config, pkgs, ... }: {
 
  # Disable pipewire. enable jack pulse and alsa
-  sound.enable = true;
+#  sound.enable = true;
   hardware.pulseaudio.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {

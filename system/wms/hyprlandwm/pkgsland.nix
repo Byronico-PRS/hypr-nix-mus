@@ -1,11 +1,5 @@
 { config, pkgs, ... }:
-let
-  apply-user = import ./scripts/apply-user.nix { inherit pkgs; };
-  apply-system = import ./scripts/apply-system.nix { inherit pkgs; };
-  calendar = import ./scripts/calendar.nix { inherit pkgs; };
-  reaper-ll = import ./scripts/reaper-ll.nix { inherit pkgs; };
- 
-in
+
  {
     #file manager
 programs.thunar.enable = true;
@@ -18,11 +12,7 @@ services.gvfs.enable = true; # Mount, trash, and other functionalities
 services.tumbler.enable = true; # Thumbnail support for images
 
   environment.systemPackages = with pkgs; [
-   #scripts de usuario
-    apply-user
-    apply-system
-    calendar
-    reaper-ll #lowlatency reaper start for pipewire
+
    #Libs for sddm theme
     # libsForQt5.qtstyleplugin-kvantum 
      #kdePackages.sddm-kcm

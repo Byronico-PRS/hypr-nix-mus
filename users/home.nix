@@ -3,9 +3,9 @@
 {
   imports = [
     #My hyprland config 1
-    ./hyprland/default.nix
+    #./hyprland/default.nix
     # My XFCE config
-    # # ./xfce/xfconf.nix    
+     ./xfce/xfconf.nix    
   ];
    
   # Home Manager needs a bit of information about you and the paths it should
@@ -37,7 +37,31 @@
     gnupg
     pinentry-qt
     hyprcursor
-    
+    bluez-alsa
+    bluez-tools
+    libsForQt5.bluez-qt
+    #audio plugins 
+      
+      infamousPlugins
+      zam-plugins
+      ladspaPlugins
+      tap-plugins
+      lsp-plugins
+      surge-XT
+      x42-plugins
+      magnetophonDSP.pluginUtils 
+      sfizz
+      helm #synth
+      distrho-ports #pugin suite
+      drumgizmo #drum sample
+      vmpk    #piano
+      guitarix # guitar amps
+      gxplugins-lv2 #guitar plugin
+      calf #plugin suite
+      tonelib-metal
+      lv2
+      caps
+      eq10q
     
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
