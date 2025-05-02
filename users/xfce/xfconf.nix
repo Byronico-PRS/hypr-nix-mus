@@ -5,7 +5,7 @@
 xfconf.settings = {          
 # Background
   xfce4-desktop = {
-   "backdrop/screen0/monitoreDP-1/workspace0/last-image" = "/home/emmp/.dotfiles/backgrounds/fubui.png";
+   "backdrop/screen0/monitoreDP-1/workspace0/last-image" = "/home/emmp/.dotfiles/backgrounds/punch.jpg";
    };
 # Shortcuts
   xfce4-keyboard-shortcuts = {

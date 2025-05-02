@@ -75,6 +75,7 @@ in
     xfce.thunar-dropbox-plugin
     zenity
     usbutils
+    varia #download manager
   
   # Audio
     
@@ -108,6 +109,9 @@ in
     gimp
     inkscape 
   #games
-    scid         
+    scid    
+  # para melhroar abertura do brave
+     xdg-desktop-portal
+     xdg-desktop-portal-gtk     
   ];
 }

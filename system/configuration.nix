@@ -23,13 +23,13 @@
     
      # Steam and game configs
       ./steam.nix 
-     
+
      # My nvidia graphics config (nao estao funcionando em meu pc) 
      # ./nvidia-dell.nix # is not working
            
      #Configs for cannon as online cam
       ./video.nix
-
+     
      # Choose your DE or WM
         # Plasma KDE
          # ./des/kde.nix
@@ -37,6 +37,8 @@
         # GNOME DE (pipewire conflito)
          # ./des/gnome.nix
         
+        #XFCE-AWESOMEWM
+         # ./des/xfce-some.nix 
         # XFCE DE
           ./des/xfce.nix
        
@@ -50,7 +52,6 @@
          # ./wms/hyprlandwm/hyprland.nix 
   
    ];
-
   
   # Enabling Musnix
    musnix.enable = true;
@@ -65,7 +66,7 @@
    boot.loader.grub.device = "/dev/sda";
    boot.loader.grub.useOSProber = true;
 
-  networking.hostName = "paulo_dell"; # Define your hostname.
+ networking.hostName = "paulo_dell"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary 
@@ -154,7 +155,6 @@
  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
  
-
  # Some programs need SUID wrappers, can be configured further or are
  # started in user sessions.
   # programs.mtr.enable = true;

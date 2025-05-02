@@ -26,7 +26,11 @@
    programs.xfconf.enable = true;
    
     environment.systemPackages = with pkgs; [
-  
+  xarchiver
+  unzip
+  zip
+  unrar
+  p7zip
 # Xfce Apps
   pavucontrol #mixer audio program
   xfce.xfce4-pulseaudio-plugin #applet that fits in xfce theme that control pavucontrol

@@ -63,6 +63,8 @@
       caps
       eq10q
     
+    # Lmstudio, app para eu usar o deepseek
+      lmstudio
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -85,6 +87,7 @@
 #   enable = true;
 #   pinentryFlavor = "qt";
 #};
+
 
 # Enabling git
    programs.git = {
