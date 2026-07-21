@@ -32,12 +32,12 @@
   unrar
   p7zip
 # Xfce Apps
-  pavucontrol #mixer audio program
-  xfce.xfce4-pulseaudio-plugin #applet that fits in xfce theme that control pavucontrol
-  xfce.catfish
-  xfce.xfce4-whiskermenu-plugin 
-  xfce.xfce4-clipman-plugin   
-  xfce.thunar-archive-plugin  
-  xfce.xfce4-genmon-plugin
+  pavucontrol
+  xfce4-pulseaudio-plugin
+  catfish
+  xfce4-whiskermenu-plugin
+  xfce4-clipman-plugin
+  thunar-archive-plugin
+  xfce4-genmon-plugin
   ];
   }

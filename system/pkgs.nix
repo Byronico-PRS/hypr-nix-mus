@@ -69,7 +69,7 @@ in
     dropbox-cli
     dropbox
     maestral-gui
-    xfce.thunar-dropbox-plugin
+    thunar-dropbox-plugin
     zenity
     usbutils
     varia #download manager
@@ -89,13 +89,13 @@ in
        
     #Windows apps
     linvstmanager
-    wineWowPackages.full
-    wineWowPackages.fonts
+    wineWow64Packages.full
+    wineWow64Packages.fonts
     wineasio
     winetricks
     winePackages.fonts
     carla
-    wineWowPackages.staging
+    wineWow64Packages.staging
     yabridge
     yabridgectl
     ffmpeg-full

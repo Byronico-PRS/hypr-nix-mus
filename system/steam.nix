@@ -14,7 +14,7 @@
    environment.systemPackages = with pkgs; [
       (lutris.override {
         extraLibraries = pkgs: [
-          wineWowPackages.full
+          wineWow64Packages.full
         ];
       })
     ];
