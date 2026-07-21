@@ -1,11 +1,13 @@
 { config, pkgs, ... }: 
 
 let
-  apply-user = import ./scripts/apply-user.nix { inherit pkgs; };
-  apply-system = import ./scripts/apply-system.nix { inherit pkgs; };
-  calendar = import ./scripts/calendar.nix { inherit pkgs; };
-  reaper-ll = import ./scripts/reaper-ll.nix { inherit pkgs; };
- 
+  apply-user    = import ./scripts/apply-user.nix    { inherit pkgs; };
+  apply-system  = import ./scripts/apply-system.nix  { inherit pkgs; };
+  calendar      = import ./scripts/calendar.nix      { inherit pkgs; };
+  reaper-ll     = import ./scripts/reaper-ll.nix     { inherit pkgs; };
+  audio-gravacao = import ./scripts/audio-gravacao.nix { inherit pkgs; };
+  audio-normal   = import ./scripts/audio-normal.nix  { inherit pkgs; };
+
 in
 {
 
@@ -15,16 +17,15 @@ in
     apply-user
     apply-system
     calendar
-    reaper-ll #lowlatency reaper start for pipewire
-    
-  # system 
-    # lightdm_gtk_greeter    
+    reaper-ll       # lowlatency reaper start for pipewire
+    audio-gravacao  # quantum 256 (~5.3ms) para gravação
+    audio-normal    # quantum 1024 (~21ms) para uso normal
+
+  # system
     gparted
-    libsForQt5.breeze-icons
     zafiro-icons
     xarchiver
-  
- 
+
   # terminal apps
     fastfetch
     wget
@@ -35,14 +36,10 @@ in
     btop
     unzip
     p7zip
-    maia-icon-theme
-    gparted
-    libsForQt5.breeze-icons
-    zafiro-icons
-    libsForQt5.kdeconnect-kde  
-    kdePackages.kdeconnect-kde  
+    kdePackages.breeze-icons
+    claude-code
+    kdePackages.kdeconnect-kde
     cmatrix
-    # libsForQt5.bismuth
     fluidsynth
     zita-alsa-pcmi
     jack-example-tools
@@ -55,15 +52,15 @@ in
   # Internet
     firefox #browser
     brave #browser
-    thunderbird #mail-client
-    vivaldi
+    #thunderbird #mail-client
+    #vivaldi
     
   # Escritorio
     
     emacs-gtk
     notes
     libreoffice #office suite
-    okular #pdf reade #versao flatpak parece funcionar melhor no awesomewm
+    kdePackages.okular #pdf reade #versao flatpak parece funcionar melhor no awesomewm
     vscodium #text editor
     direnv
     git
@@ -87,18 +84,18 @@ in
   # Video
     obs-studio #rec_screen vide_studio
     vlc #video player
-    libsForQt5.kdenlive #video editor
+    kdePackages.kdenlive #video editor
     gphoto2 #cam tool
        
     #Windows apps
     linvstmanager
     wineWowPackages.full
     wineWowPackages.fonts
-    wine
     wineasio
     winetricks
     winePackages.fonts
     carla
+    wineWowPackages.staging
     yabridge
     yabridgectl
     ffmpeg-full
@@ -109,9 +106,6 @@ in
     gimp
     inkscape 
   #games
-    scid    
-  # para melhroar abertura do brave
-     xdg-desktop-portal
-     xdg-desktop-portal-gtk     
+    #scid    
   ];
 }

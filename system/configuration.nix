@@ -5,58 +5,21 @@
 { config, pkgs, ... }:
 
 {
-  imports =[
-   # # Essentials:
-   
-     # Include the results of the hardware scan. (Copy your file from /etc/nixos)
+  imports = [
      ./hardware-configuration.nix
-     
-     # List of my Packages (choose your environment apps)
-      ./pkgs.nix
-      #musnix channel
-      <musnix>
-     # My config audio file (audio config for pulse audio with jack)     
-        # with pulse
-         ./audio.nix
-        #with pipewire
-        #./audio-pipewire.nix 
-    
-     # Steam and game configs
-      ./steam.nix 
-
-     # My nvidia graphics config (nao estao funcionando em meu pc) 
-     # ./nvidia-dell.nix # is not working
-           
-     #Configs for cannon as online cam
-      ./video.nix
-     
-     # Choose your DE or WM
-        # Plasma KDE
-         # ./des/kde.nix
-        
-        # GNOME DE (pipewire conflito)
-         # ./des/gnome.nix
-        
-        #XFCE-AWESOMEWM
-         # ./des/xfce-some.nix 
-        # XFCE DE
-          ./des/xfce.nix
-       
-        # Budgie DE 
-         # ./des/budgie.nix 
-            
-        # Awesome WM
-        # ./wms/awesomewm/awesome.nix 
-        
-        # Hyprland WM 
-         # ./wms/hyprlandwm/hyprland.nix 
-  
+     ./pkgs.nix
+     <musnix>
+     ./audio.nix
+     ./steam.nix
+     ./video.nix
+     ./des/xfce.nix
+     ./mod-duo.nix
    ];
   
   # Enabling Musnix
    musnix.enable = true;
    #musnix.soundcardPciId = "00:05.0";
-   #musnix.kernel.realtime = true;
+  # musnix.kernel.realtime = true;
    musnix.rtirq.enable = true;
    musnix.rtcqs.enable = true;
    musnix.alsaSeq.enable = true;
@@ -137,14 +100,14 @@
      isNormalUser = true;
      description = "emmp";
      homeMode = "755";
-     extraGroups = [ "networkmanager" "wheel" "audio" "jackaudio" ];
+     extraGroups = [ "networkmanager" "wheel" "audio" "jackaudio" "realtime" ];
      packages = with pkgs; [
       #games
-      scid #chessdatabase
-      ltris #tetris
-      abuse #sidescroller action game
-      xonotic #multiplayer fps
-      stockfish #chess engine   
+      #scid #chessdatabase
+      #ltris #tetris
+      #abuse #sidescroller action game
+      #xonotic #multiplayer fps
+     # stockfish #chess engine   
      ]; 
   };
   
@@ -179,29 +142,10 @@
     allowedTCPPorts = [ 17500 ]; # Dropbox
     allowedUDPPorts = [ 17500 ]; # Dropbox
     };
-   #Just dropbox
-    systemd.user.services.dropbox = {
-    description = "Dropbox";
-    wantedBy = [ "graphical-session.target" ];
-    environment = {
-      QT_PLUGIN_PATH = "/run/current-system/sw/" + pkgs.qt5.qtbase.qtPluginPrefix;
-      QML2_IMPORT_PATH = "/run/current-system/sw/" + pkgs.qt5.qtbase.qtQmlPrefix;
-    };
 
-  };
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
+
+
 
 }

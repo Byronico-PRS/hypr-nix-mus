@@ -2,21 +2,26 @@
  #STEAM
    programs.steam = {
      enable = true;
-     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+     remotePlay.openFirewall = true;
+     dedicatedServer.openFirewall = true;
+     extraCompatPackages = [ pkgs.proton-ge-bin ];
      };
- #LUTRIS 
+
+ #GAMEMODE — melhora performance em jogos
+   programs.gamemode.enable = true;
+
+ #LUTRIS
    environment.systemPackages = with pkgs; [
       (lutris.override {
-        extraLibraries =  pkgs: [
-          # List library dependencies here
+        extraLibraries = pkgs: [
+          wineWowPackages.full
         ];
       })
     ];
+
  #OPENGL
-      hardware.graphics.enable32Bit = true;
- #ICONS4LUTRIS
- #  environment.systemPackages = [ gnome.adwaita-icon-theme ];
+   hardware.graphics.enable = true;
+   hardware.graphics.enable32Bit = true;
 
 }
 

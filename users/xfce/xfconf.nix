@@ -4,9 +4,9 @@
 # My XFCE Settings:
 xfconf.settings = {          
 # Background
-  xfce4-desktop = {
-   "backdrop/screen0/monitoreDP-1/workspace0/last-image" = "/home/emmp/.dotfiles/backgrounds/punch.jpg";
-   };
+  #xfce4-desktop = {
+  # "backdrop/screen0/monitoreDP-1/workspace0/last-image" = "/home/emmp/.dotfiles/backgrounds/punch.jpg";
+  # };
 # Shortcuts
   xfce4-keyboard-shortcuts = {
    "commands/custom/<Super>c" = "codium";
@@ -36,7 +36,7 @@ xfconf.settings = {
 # # Themes  
  xsettings = { 
   "Net/ThemeName" = "Zukitre-dark";
-  "Net/IconThemeName" = "maia-dark";
+  "Net/IconThemeName" = "Zafiro";
    }; 
  # Window Manager
  xfwm4 = {

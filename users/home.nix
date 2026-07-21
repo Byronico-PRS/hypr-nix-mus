@@ -36,10 +36,10 @@
     git-crypt
     gnupg
     pinentry-qt
-    hyprcursor
     bluez-alsa
     bluez-tools
-    libsForQt5.bluez-qt
+    #libsForQt5.bluez-qt
+    #en-croissant
     #audio plugins 
       
       infamousPlugins
@@ -62,9 +62,10 @@
       lv2
       caps
       eq10q
-    
+      neural-amp-modeler-lv2
+      sonobus
     # Lmstudio, app para eu usar o deepseek
-      lmstudio
+      #lmstudio
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -92,9 +93,9 @@
 # Enabling git
    programs.git = {
      enable = true;
-     userName  = "byronico";
-     userEmail = "pauloserafim1710@gmail.com";
-     extraConfig = {
+     settings.user.name  = "byronico";
+     settings.user.email = "pauloserafim1710@gmail.com";
+     settings = {
          init.defaultBranch = "main";
   };
 

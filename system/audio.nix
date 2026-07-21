@@ -1,38 +1,61 @@
 { config, pkgs, ... }: {
 
- # Disable pipewire. enable jack pulse and alsa
-#  sound.enable = true;
-  hardware.pulseaudio.enable = true;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = false;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    jack.enable = true;
-    
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-};
+  # PulseAudio desligado — PipeWire assume o papel
+  services.pulseaudio.enable = false;
 
-  services.jack = {
-    jackd.enable = false;
-    # support ALSA only programs via ALSA JACK PCM plugin
-    alsa.enable = false;
-    # support ALSA only programs via loopback device (supports programs like Steam)
-    loopback = {
-      enable = true;
-      # buffering parameters for dmix device to work with ALSA only semi-professional sound programs
-     # dmixConfig = ''
-     #   period_size 256
-     #         '';
+  # RTKit — prioridade de tempo real para processos de áudio
+  security.rtkit.enable = true;
+
+  # PipeWire — servidor de áudio principal
+  services.pipewire = {
+    enable           = true;
+    alsa.enable      = true;
+    alsa.support32Bit = true;
+    pulse.enable     = true;   # emula PulseAudio
+    jack.enable      = true;   # emula JACK — necessário pro Reaper
+    wireplumber.enable = true;
+  };
+
+  # Configuração padrão do PipeWire — mixagem (1024) ou gravação via script
+  services.pipewire.extraConfig.pipewire."92-low-latency" = {
+    context.properties = {
+      default.clock.rate        = 48000;
+      default.clock.quantum     = 1024;
+      default.clock.min-quantum = 32;
+      default.clock.max-quantum = 8192;
     };
   };
 
-  hardware.pulseaudio.package = pkgs.pulseaudio.override { jackaudioSupport = true; };
+  # Emulação PulseAudio
+  services.pipewire.extraConfig.pipewire-pulse."92-low-latency" = {
+    context.modules = [
+      {
+        name = "libpipewire-module-protocol-pulse";
+        args = {
+          pulse.min.req     = "32/48000";
+          pulse.default.req = "1024/48000";
+          pulse.max.req     = "8192/48000";
+          pulse.min.quantum = "32/48000";
+          pulse.max.quantum = "8192/48000";
+        };
+      }
+    ];
+    stream.properties = {
+      node.latency    = "1024/48000";
+      resample.quality = 4;
+    };
+  };
 
+  # Desativa C-states para menor latência de áudio
+  boot.kernelParams = [ "processor.max_cstate=1" ];
 
+  # implicit_fb — corrige tick periódico em interfaces USB (Scarlett, MOD Duo, etc.)
+  boot.extraModprobeConfig = ''
+    options snd-usb-audio implicit_fb=1
+  '';
 
+  environment.systemPackages = with pkgs; [
+    crosspipe       # patchbay visual para PipeWire
+    qpwgraph        # patchbay PipeWire com conexões persistentes
+  ];
 }

@@ -9,8 +9,8 @@
    background = "/home/emmp/Imagens/punch_bgs/saitama_paint.jpg";
    greeters.gtk = {
      enable = true;
-     iconTheme.package = pkgs.maia-icon-theme;
-     iconTheme.name = "Maia-dark"; 
+     #iconTheme.package = pkgs.maia-icon-theme;
+     #iconTheme.name = "Maia-dark"; 
      theme.package = pkgs.zuki-themes;
      theme.name = "Zukitwo-dark";
      extraConfig = "user-background = false";
